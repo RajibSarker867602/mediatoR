@@ -1,4 +1,5 @@
-﻿using DemoLibrary.Commands;
+﻿using DemoLibrary.Abstractions.Messaging;
+using DemoLibrary.Commands;
 using DemoLibrary.Data;
 using DemoLibrary.Models;
 using MediatR;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DemoLibrary.Handlers
 {
-    public class InsertProductHandler : IRequestHandler<InsertProductCommand, Product>
+    public class InsertProductHandler : ICommandHandler<InsertProductCommand, Product>
     {
         private readonly IDataAccess _dataAccess;
 

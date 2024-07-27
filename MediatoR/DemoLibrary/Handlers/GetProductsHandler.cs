@@ -1,4 +1,5 @@
-﻿using DemoLibrary.Data;
+﻿using DemoLibrary.Abstractions.Messaging;
+using DemoLibrary.Data;
 using DemoLibrary.Models;
 using DemoLibrary.Queries;
 using MediatR;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DemoLibrary.Handlers
 {
-    public class GetProductsHandler : IRequestHandler<GetProductsQuery, List<Product>>
+    public class GetProductsHandler : IQueryHandler<GetProductsQuery, List<Product>>
     {
         private readonly IDataAccess _dataAccess;
 

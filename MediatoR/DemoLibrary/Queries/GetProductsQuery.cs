@@ -1,4 +1,5 @@
-﻿using DemoLibrary.Models;
+﻿using DemoLibrary.Abstractions.Messaging;
+using DemoLibrary.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace DemoLibrary.Queries
 {
-    public record GetProductsQuery() : IRequest<List<Product>>;
+    public record GetProductsQuery() : IQuery<List<Product>>;
 }

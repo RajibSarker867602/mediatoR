@@ -14,7 +14,8 @@ builder.Services.AddSwaggerGen();
 
 // adding mediatoR
 builder.Services.AddSingleton<IDataAccess, DemoDataAccess>();
-builder.Services.AddMediatR(typeof(DemoLibraryMediatorEntryPoint).Assembly);
+//builder.Services.AddMediatR(typeof(DemoLibraryMediatorEntryPoint).Assembly);
+builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(DemoLibraryMediatorEntryPoint).Assembly));
 
 var app = builder.Build();
 

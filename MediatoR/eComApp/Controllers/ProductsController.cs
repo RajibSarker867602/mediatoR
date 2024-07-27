@@ -1,5 +1,6 @@
 ﻿using DemoLibrary.Commands;
 using DemoLibrary.Models;
+using DemoLibrary.Notifications;
 using DemoLibrary.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +37,12 @@ namespace eComApp.Controllers
         [HttpPost]
         public async Task<Product> Post([FromBody] Product product)
         {
-            return await _mediator.Send(new InsertProductCommand(product.Name, product.Price));
+            var response = await _mediator.Send(new InsertProductCommand(product.Name, product.Price));
+            
+            // publish notification for product insert
+            await _mediator.Publish(new InsertProductNotification(response.Id));
+            
+            return response;
         }
 
         // PUT api/<ProductsController>/5

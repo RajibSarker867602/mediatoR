@@ -1,4 +1,5 @@
-﻿using DemoLibrary.Models;
+﻿using DemoLibrary.Abstractions.Messaging;
+using DemoLibrary.Models;
 using DemoLibrary.Queries;
 using MediatR;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DemoLibrary.Handlers
 {
-    public class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery, Product>
+    public class GetProductByIdHandler : IQueryHandler<GetProductByIdQuery, Product>
     {
         private readonly IMediator _mediator;
 
