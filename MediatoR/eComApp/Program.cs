@@ -1,4 +1,5 @@
 using DemoLibrary;
+using DemoLibrary.Behaviors;
 using DemoLibrary.Data;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,14 @@ builder.Services.AddSwaggerGen();
 // adding mediatoR
 builder.Services.AddSingleton<IDataAccess, DemoDataAccess>();
 //builder.Services.AddMediatR(typeof(DemoLibraryMediatorEntryPoint).Assembly);
-builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(DemoLibraryMediatorEntryPoint).Assembly));
+builder.Services.AddMediatR(config =>
+{
+    // assembly for Mediator
+    config.RegisterServicesFromAssembly(typeof(DemoLibraryMediatorEntryPoint).Assembly);
+
+    // behavior for Mediator
+    config.AddOpenBehavior(typeof(RequestResponseLoggingBehavior<,>));
+});
 
 var app = builder.Build();
 
